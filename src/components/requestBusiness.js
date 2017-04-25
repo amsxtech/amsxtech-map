@@ -4,6 +4,7 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import createCompanyRequest from '../actions/business/requestBusiness'
+import subscribeToBusinesses from '../actions/business/subscribe'
 
 class RequestBusiness extends PureComponent {
   constructor(){
@@ -16,6 +17,9 @@ class RequestBusiness extends PureComponent {
       longitude: '',
       latitude: ''
     }
+  }
+  componentWillMount(){
+    this.props.subscribeToBusinesses()
   }
   submitCompanyRequest(){
     const companyRequest = {
@@ -99,4 +103,4 @@ class RequestBusiness extends PureComponent {
 }
 
 
-export default connect(null, { createCompanyRequest })(RequestBusiness)
+export default connect(null, { createCompanyRequest, subscribeToBusinesses })(RequestBusiness)
