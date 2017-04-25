@@ -1,5 +1,6 @@
 import React from 'react';
 import * as config from './config'
+import { connect } from 'react-redux'
 import GoogleApiComponent from './GoogleApiComponent'
 import JobsMap from './JobsMap'
 import {Marker} from './Marker'
@@ -22,7 +23,14 @@ export class MapContainer extends React.Component {
     )}
 }
 
+// const mapStateToProps = ({ requests }) => {
+//    return (requests.filter((request) => {
+//      request.active
+//     })
+//   )
+// }
+
 let key = config.getGoogleKey()
-export default GoogleApiComponent({
+export default connect(mapStateToProps)(GoogleApiComponent({
   apiKey: key
-})(MapContainer)
+})(MapContainer))
