@@ -11,7 +11,7 @@ export class MapContainer extends React.Component {
         <JobsMap google={this.props.google}>
           <Marker
             title={'Dolores park'}
-            position={{lat: 37.759703, lng: -122.428093}} />
+            position={{lat: 52.370216, lng: 4.895168}} />
         </JobsMap>
       </div>
     )}

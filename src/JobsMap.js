@@ -40,7 +40,15 @@ export default class JobsMap extends React.Component {
       const center = new maps.LatLng(lat, lng);
       const mapConfig = Object.assign({}, {
         center: center,
-        zoom: zoom
+        zoom: zoom,
+        streetViewControl: false,
+        mapTypeControl: false,
+        // styles: [{
+        //   "featureType": "all",
+        //   "stylers": [
+        //     { "visibility": "off" }
+        //   ]
+        // }]
       })
 
       this.map = new maps.Map(node, mapConfig);
