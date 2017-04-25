@@ -12,8 +12,10 @@ export class Marker extends React.Component {
 
   renderMarker() {
     let {
-      map, google, title, position
+      map, google
     } = this.props;
+    let position = this.props.company.coordinates
+    let title = this.props.company.name
 
     // if the marker has already been drawn, set map on or null
     if (this.marker) {

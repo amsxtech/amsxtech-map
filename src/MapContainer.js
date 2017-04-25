@@ -3,15 +3,20 @@ import * as config from './config'
 import GoogleApiComponent from './GoogleApiComponent'
 import JobsMap from './JobsMap'
 import {Marker} from './Marker'
+import companies from './seed'
 
 export class MapContainer extends React.Component {
   render() {
     return (
       <div>
         <JobsMap google={this.props.google}>
-          <Marker
-            title={'Dolores park'}
-            position={{lat: 52.370216, lng: 4.895168}} />
+          { companies.map((company) => {
+              return(
+                <Marker
+                company={ company } />
+              )
+            })
+          }
         </JobsMap>
       </div>
     )}
