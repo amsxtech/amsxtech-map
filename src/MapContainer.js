@@ -13,8 +13,7 @@ export class MapContainer extends React.Component {
           { companies.map((company) => {
               return(
                 <Marker
-                title={ company.name }
-                position={company.coordinates} />
+                company={ company } />
               )
             })
           }
