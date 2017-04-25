@@ -1,3 +1,4 @@
+
 import React, {PureComponent} from 'react'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
@@ -25,8 +26,8 @@ class App extends PureComponent {
       </div>
       </MuiThemeProvider>
 
+
     )
   }
 }
-
 export default App

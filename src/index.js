@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+import MapContainer from './MapContainer'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute} from 'react-router'
 import store, { history } from './store'
@@ -17,8 +18,10 @@ ReactDOM.render(
         <IndexRoute component={RequestBusiness} />
         <Route path={BUSINESSES_INDEX_PATH} component={RequestsIndex} />
         <Route path={USER_SIGN_IN_PATH} component={SignIn} />
+        <Route path={'/map'} component={MapContainer} />
       </Route>
     </Router>
+
   </Provider>,
   document.getElementById('root')
 )
