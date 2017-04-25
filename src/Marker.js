@@ -1,21 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import showMarker from './actions/showMarker'
 
-export class Marker extends React.Component {
-
-  componentDidUpdate(prevProps) {
+class Marker extends React.Component {
+  // componentDidUpdate(prevProps) {
     // if ((this.props.map !== prevProps.map) ||
     // (this.props.properties !== prevProps.properties) ||
     // (this.props.mapOn !== prevProps.mapOn)) {
       // this.renderMarker()
     // }
-  }
+  // }
 
   componentDidMount() {
     this.renderMarker()
   }
 
   renderMarker() {
-    console.log('HERE')
+    // console.log('HERE')
     let { map, google, company } = this.props;
     let position = { lat: parseFloat(company.latitude), lng: parseFloat(company.longitude)}
     let title = company.name
@@ -39,9 +40,21 @@ export class Marker extends React.Component {
       };
 
     this.marker = new google.maps.Marker(pref);
+    this.marker.addListener('click', (e) => {
+      this.onMarkerClick()
+    })
+  }
+
+  onMarkerClick(){
+    console.log('Clicked marker')
+    // console.log(this.props)
+    // console.log(this.marker)
+    this.props.showMarker(this.props.company)
   }
 
   render() {
     return null;
   }
 }
+
+export default connect(null, { showMarker })(Marker)
