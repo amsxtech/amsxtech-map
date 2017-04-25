@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import MapContainer from './MapContainer';
 
-class App extends React.Component {
+export class AppContainer extends React.Component {
   render() {
     return (
-      <h1>Hello World!</h1>
+      <div className="container">
+        <MapContainer {...this.props} />
+      </div>
     )
   }
 }
-
-export default App
