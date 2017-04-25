@@ -7,6 +7,9 @@ import {Marker} from './Marker'
 import companies from './seed'
 
 export class MapContainer extends React.Component {
+  componentDidMount() {
+    this.fetchRequests()
+  }
   render() {
     return (
       <div>
@@ -31,6 +34,6 @@ export class MapContainer extends React.Component {
 // }
 
 let key = config.getGoogleKey()
-export default connect(mapStateToProps)(GoogleApiComponent({
+export default connect()(GoogleApiComponent({
   apiKey: key
 })(MapContainer))
