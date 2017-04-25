@@ -3,17 +3,22 @@ import React from 'react';
 export class Marker extends React.Component {
 
   componentDidUpdate(prevProps) {
-    if ((this.props.map !== prevProps.map) ||
-    (this.props.properties !== prevProps.properties) ||
-    (this.props.mapOn !== prevProps.mapOn)) {
-      this.renderMarker()
-    }
+    // if ((this.props.map !== prevProps.map) ||
+    // (this.props.properties !== prevProps.properties) ||
+    // (this.props.mapOn !== prevProps.mapOn)) {
+      // this.renderMarker()
+    // }
+  }
+
+  componentDidMount() {
+    this.renderMarker()
   }
 
   renderMarker() {
-    let { map, google } = this.props;
-    let pos = { lat: parseFloat(this.props.company.latitude), lng: parseFloat(this.props.company.longitude)}
-    let title = this.props.company.name
+    console.log('HERE')
+    let { map, google, company } = this.props;
+    let position = { lat: parseFloat(company.latitude), lng: parseFloat(company.longitude)}
+    let title = company.name
 
     // if the marker has already been drawn, set map on or null
     if (this.marker) {
@@ -29,7 +34,7 @@ export class Marker extends React.Component {
     // setting the map to null
     const pref = {
         map: map,
-        position: pos,
+        position: position,
         title: title
       };
 

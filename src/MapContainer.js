@@ -13,7 +13,7 @@ export class MapContainer extends React.Component {
 
   render() {
     const { companies } = this.props
-    console.log(companies)
+    console.log(this.props)
     return (
       <div>
         <JobsMap google={this.props.google}>
