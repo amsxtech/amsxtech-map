@@ -65,11 +65,9 @@ export default class JobsMap extends React.Component {
       minHeight: '400px'
     }
     return (
-      <div className="row">
-        <div className='col-xs-12 col-sm-12 col-md-12' style={style} ref='map'>
-          {this.renderChildren()}
-          Loading map...
-        </div>
+      <div style={style} ref='map'>
+        {this.renderChildren()}
+        Loading map...
       </div>
     )
   }
