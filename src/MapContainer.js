@@ -7,15 +7,20 @@ import {Marker} from './Marker'
 import subscribeToBusinesses from './actions/business/subscribe'
 
 export class MapContainer extends React.Component {
+  componentWillMount(){
+    this.props.subscribeToBusinesses()
+  }
 
   render() {
     const { companies } = this.props
+    console.log(companies)
     return (
       <div>
         <JobsMap google={this.props.google}>
-          { companies.map((company) => {
+          { this.props.companies.map((company, index) => {
+            console.log(company)
               return(
-                <Marker
+                <Marker key={ index }
                 company={ company } />
               )
             })
@@ -27,7 +32,7 @@ export class MapContainer extends React.Component {
 
 const mapStateToProps = ({ businesses }) => {
    const companies = businesses.filter((business) => {
-     business.active
+     return business.confirmed
    })
   return { companies }
 }
