@@ -37,7 +37,7 @@ class NavBar extends PureComponent {
 
     return (
       <div>
-        <AppBar title="AMSxTech Map">
+        <AppBar title="AMSxTech Map" showMenuIconButton={false}>
           <SelectField
             floatingLabelText="Company Type"
             value={this.state.companyType}
