@@ -14,10 +14,10 @@ export class MapContainer extends React.Component {
 
   render() {
     const { companies } = this.props
-    const contentStyle = {  transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
+    const contentStyle = {  transition: 'margin-right 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
 
     if (this.props.showInfoWindow) {
-      contentStyle.marginLeft = 256;
+      contentStyle.marginRight = 256;
     }
 
     return (

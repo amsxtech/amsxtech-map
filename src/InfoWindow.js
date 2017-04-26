@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import closeInfoWindow from './actions/closeInfoWindow'
 import Drawer from 'material-ui/Drawer'
+import FlatButton from 'material-ui/FlatButton'
+import './infoWindow.sass'
 
 class InfoWindow extends PureComponent {
   clickCloseBtn() {
@@ -11,16 +13,20 @@ class InfoWindow extends PureComponent {
 
   render() {
     let { clickedMarker } = this.props
+    const drawerStyle = { boxShadow: 'none', padding: '10px' };
+
     return(
-      <Drawer id="infoWindow" open={this.props.showInfoWindow}>
-        <button onClick={ this.props.closeInfoWindow }>
-          X
-        </button>
+      <Drawer open={this.props.showInfoWindow} openSecondary={true} containerStyle={drawerStyle}>
+        <button onClick={ this.props.closeInfoWindow }>×</button>
         {clickedMarker != [] ? (
           <div>
-            <h2>{ clickedMarker.name }</h2>
-            Address: { clickedMarker.address }<br />
-            Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a>
+            <p>
+              <h3>{ clickedMarker.name }</h3>
+              <span className="filter">Companytype</span> in <span className="filter">Industry</span>
+              <br /><br />
+              Address: { clickedMarker.address }<br />
+              Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a>
+            </p>
           </div>
         ) : ( null )
         }
