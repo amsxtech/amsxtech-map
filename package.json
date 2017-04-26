@@ -79,6 +79,7 @@
     "webpack-hot-middleware": "2.12.1"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "breakpoint-sass": "^2.7.1",
     "feathers-client": "^1.9.0",

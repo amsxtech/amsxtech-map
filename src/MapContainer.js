@@ -3,9 +3,11 @@ import * as config from './config'
 import { connect } from 'react-redux'
 import GoogleApiComponent from './GoogleApiComponent'
 import JobsMap from './JobsMap'
+import NavBar from './components/NavBar'
 import Marker from './Marker'
 import subscribeToBusinesses from './actions/business/subscribe'
 import InfoWindow from './InfoWindow'
+
 
 export class MapContainer extends React.Component {
   componentWillMount(){
@@ -22,6 +24,7 @@ export class MapContainer extends React.Component {
 
     return (
       <div>
+        <NavBar />
         <InfoWindow />
         <div style={contentStyle}>
           <JobsMap google={this.props.google}>

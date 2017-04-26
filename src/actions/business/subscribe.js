@@ -22,7 +22,7 @@ export default () => {
         service: 'businesses',
         method: FIND,
         type: SUBSCRIBED_TO_BUSINESSES_SERVICE,
-        authenticate: true,
+        authenticate: false,
         params: {
           query: {
             $sort: { createdAt: -1},
