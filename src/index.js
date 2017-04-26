@@ -18,12 +18,11 @@ ReactDOM.render(
       <Route path={ROOT_PATH} component={App}>
         <IndexRoute component={RequestBusiness} />
         <Route path={BUSINESSES_INDEX_PATH} component={RequestsIndex} />
-          <Route path={USER_SIGN_IN_PATH} component={SignIn} />
-            <Route path={USER_SIGN_UP_PATH} component={SignUp} />
+        <Route path={USER_SIGN_IN_PATH} component={SignIn} />
+        <Route path={USER_SIGN_UP_PATH} component={SignUp} />
         <Route path={'/map'} component={MapContainer} />
       </Route>
     </Router>
-
   </Provider>,
   document.getElementById('root')
 )

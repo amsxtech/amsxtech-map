@@ -34,7 +34,7 @@ export default class JobsMap extends React.Component {
     // touches the DOM
       const mapRef = this.refs.map;
       const node = ReactDOM.findDOMNode(mapRef);
-      let zoom = 14;
+      let zoom = 15;
       let lat = 52.370216;
       let lng = 4.895168;
       const center = new maps.LatLng(lat, lng);
@@ -43,12 +43,15 @@ export default class JobsMap extends React.Component {
         zoom: zoom,
         streetViewControl: false,
         mapTypeControl: false,
-        // styles: [{
-        //   "featureType": "all",
-        //   "stylers": [
-        //     { "visibility": "off" }
-        //   ]
-        // }]
+        styles: [{
+            featureType: 'poi',
+            stylers: [{visibility: 'off'}]
+          },
+          {
+            featureType: 'transit',
+            elementType: 'labels.icon',
+            stylers: [{visibility: 'off'}]
+          }]
       })
 
       this.map = new maps.Map(node, mapConfig);
@@ -62,11 +65,9 @@ export default class JobsMap extends React.Component {
       minHeight: '400px'
     }
     return (
-      <div className="row">
-        <div className='col-xs-12 col-sm-12 col-md-12' style={style} ref='map'>
-          {this.renderChildren()}
-          Loading map...
-        </div>
+      <div style={style} ref='map'>
+        {this.renderChildren()}
+        Loading map...
       </div>
     )
   }
