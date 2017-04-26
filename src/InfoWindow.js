@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import closeInfoWindow from './actions/closeInfoWindow'
+import Drawer from 'material-ui/Drawer'
 
 class InfoWindow extends PureComponent {
   clickCloseBtn() {
@@ -9,18 +10,25 @@ class InfoWindow extends PureComponent {
   }
 
   render() {
+    let { clickedMarker } = this.props
     return(
-      <div id="infoWindow">
+      <Drawer id="infoWindow" open={this.props.showInfoWindow}>
         <button onClick={ this.props.closeInfoWindow }>
           X
         </button>
-        <p>Info window:</p>
-        { this.props.clickedMarker.title ? this.props.clickedMarker.title : null }
-      </div>
+        {clickedMarker != [] ? (
+          <div>
+            <h2>{ clickedMarker.name }</h2>
+            Address: { clickedMarker.address }<br />
+            Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a>
+          </div>
+        ) : ( null )
+        }
+      </Drawer>
     )
   }
 }
 
-const mapStateToProps = ({ clickedMarker }) => ({ clickedMarker })
+const mapStateToProps = ({ clickedMarker,showInfoWindow }) => ({ clickedMarker,showInfoWindow })
 
 export default connect(mapStateToProps, { closeInfoWindow })(InfoWindow)
