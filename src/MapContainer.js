@@ -17,7 +17,6 @@ export class MapContainer extends React.Component {
   render() {
     const { companies } = this.props
     const contentStyle = {  transition: 'margin-right 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
-
     if (this.props.showInfoWindow) {
       contentStyle.marginRight = 256;
     }
@@ -29,7 +28,6 @@ export class MapContainer extends React.Component {
         <div style={contentStyle}>
           <JobsMap google={this.props.google}>
             { this.props.companies.map((company, index) => {
-              console.log(company)
                 return(
                   <Marker key={ index }
                   company={ company } />
