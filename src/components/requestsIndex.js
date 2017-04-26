@@ -4,6 +4,8 @@ import { Link } from 'react-router'
 import subscribeToBusinesses from '../actions/business/subscribe'
 import confirmBusiness from '../actions/business/add'
 import RaisedButton from 'material-ui/RaisedButton'
+import AddCompanyType from './AddCompanyType'
+import AddSectorType from './AddSectorType'
 
 
 class RequestsIndex extends PureComponent {
@@ -33,6 +35,8 @@ class RequestsIndex extends PureComponent {
               />
           </div>
         })}
+        <AddSectorType />
+        <AddCompanyType />
       </div>
     )
   }
