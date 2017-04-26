@@ -22,7 +22,7 @@ export default () => {
         service: 'sectorTypes',
         method: FIND,
         type: SUBSCRIBED_TO_SECTOR_TYPES_SERVICE,
-        authenticate: true,
+        authenticate: false,
         params: {
           query: {
             $sort: { createdAt: -1},
