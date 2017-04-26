@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import closeInfoWindow from './actions/closeInfoWindow'
 import Drawer from 'material-ui/Drawer'
-import FlatButton from 'material-ui/FlatButton'
 import './infoWindow.sass'
 
 class InfoWindow extends PureComponent {
