@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -21,6 +22,7 @@ class RequestBusiness extends PureComponent {
   componentWillMount(){
     this.props.subscribeToBusinesses()
   }
+
   submitCompanyRequest(){
     const companyRequest = {
       name: this.state.name,
@@ -37,11 +39,14 @@ class RequestBusiness extends PureComponent {
       name: name,
     })
   }
+
   handleAddressChange = (event, address) => {
+    this.getCoordinates(address)
     this.setState({
       address: address,
     })
   }
+
   handleWebsiteChange = (event, website) => {
     this.setState({
       website: website,
@@ -62,7 +67,22 @@ class RequestBusiness extends PureComponent {
       latitude: latitude,
     })
   }
+
+  getCoordinates = (address) => {
+    const requestAddress = address.split(' ').join('+')
+    const request = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestAddress}+Amsterdam&components=country:NL&key=AIzaSyC4tOoGJ5ypR_8KCcnJCSqIOHLIsXAhQ64`
+    return axios.get(request)
+      .then((response) => {
+        this.setState({
+          latitude: response.data.results[0].geometry.location.lat,
+          longitude: response.data.results[0].geometry.location.lng,
+        })
+      })
+      .catch((error) => { console.error(error)})
+  }
+
   render(){
+
     return (
       <div>
         <h3>Request to be added</h3>
@@ -82,16 +102,7 @@ class RequestBusiness extends PureComponent {
              hintText="Contact email"
              onChange={this.handleEmailChange}
              />
-           <TextField
-             hintText="Longitude"
-             type="number"
-             onChange={this.handleLongChange}
-            />
-            <TextField
-              hintText="Latitude"
-              type="number"
-              onChange={this.handleLatChange}
-             />
+
            <RaisedButton
              label="Submit company request"
              primary={true}
