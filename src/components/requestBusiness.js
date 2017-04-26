@@ -6,7 +6,6 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import createCompanyRequest from '../actions/business/requestBusiness'
 import subscribeToBusinesses from '../actions/business/subscribe'
-import fetchCoordinates from '../actions/requests/fetchCoordinates'
 
 class RequestBusiness extends PureComponent {
   constructor(){
@@ -74,8 +73,6 @@ class RequestBusiness extends PureComponent {
     const request = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestAddress}+Amsterdam&components=country:NL&key=AIzaSyC4tOoGJ5ypR_8KCcnJCSqIOHLIsXAhQ64`
     return axios.get(request)
       .then((response) => {
-        console.log('Fetching Address...')
-        console.log(response.data.results[0].geometry.location.lat)
         this.setState({
           latitude: response.data.results[0].geometry.location.lat,
           longitude: response.data.results[0].geometry.location.lng,
@@ -117,4 +114,4 @@ class RequestBusiness extends PureComponent {
 }
 
 
-export default connect(null, { createCompanyRequest, subscribeToBusinesses, fetchCoordinates })(RequestBusiness)
+export default connect(null, { createCompanyRequest, subscribeToBusinesses })(RequestBusiness)
