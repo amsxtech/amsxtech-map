@@ -24,9 +24,9 @@ export class MapContainer extends React.Component {
 
     return (
       <div>
-        <NavBar />
         <InfoWindow />
         <div style={contentStyle}>
+          <NavBar />
           <JobsMap google={this.props.google}>
             { this.props.companies.map((company, index) => {
               console.log(company)
