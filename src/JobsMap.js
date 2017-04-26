@@ -62,7 +62,7 @@ export default class JobsMap extends React.Component {
   render() {
     const style = {
       minWidth: '400px',
-      minHeight: '400px'
+      minHeight: '85vh'
     }
     return (
       <div style={style} ref='map'>
