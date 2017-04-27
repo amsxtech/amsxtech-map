@@ -6,11 +6,11 @@ import subscribeToUsers from '../actions/users/subscribe'
 import confirmBusiness from '../actions/business/add'
 import AddCompanyType from './AddCompanyType'
 import AddSectorType from './AddSectorType'
+import NavBarAdmin from './NavBarAdmin'
 
 import RaisedButton from 'material-ui/RaisedButton'
 import Paper from 'material-ui/Paper';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import './requestsIndex.sass'
 
 class RequestsIndex extends PureComponent {
   componentWillMount(){
@@ -27,6 +27,7 @@ class RequestsIndex extends PureComponent {
 
     return (
       <div>
+      <NavBarAdmin />
         <h3>Add Filter Types</h3>
         <div className="section filter">
           <AddCompanyType />
@@ -48,13 +49,13 @@ class RequestsIndex extends PureComponent {
             {businessRequests.map((business, index) => {
               return <TableRow key={index}>
                 <TableRowColumn>{business.name}</TableRowColumn>
-                <TableRowColumn>{business.address}</TableRowColumn>
+                <TableRowColumn style={{whiteSpace: 'normal'}}>{business.address}</TableRowColumn>
                 <TableRowColumn>{business.website}</TableRowColumn>
                 <TableRowColumn>{business.email ? business.email : "-" }</TableRowColumn>
                 <TableRowColumn>
                   <RaisedButton
                   label="Confirm company"
-                  primary={true}
+                  secondary={true}
                   disabled={business.confirmed}
                   onClick={() => {this.props.confirmBusiness(business, business._id)}}
                   />
@@ -80,7 +81,7 @@ class RequestsIndex extends PureComponent {
             {confirmedBusinesses.map((business, index) => {
               return <TableRow key={index}>
                 <TableRowColumn>{business.name}</TableRowColumn>
-                <TableRowColumn>{business.address}</TableRowColumn>
+                <TableRowColumn style={{whiteSpace: 'normal'}}>{business.address}</TableRowColumn>
                 <TableRowColumn>{business.website}</TableRowColumn>
                 <TableRowColumn>{business.email ? business.email : "-" }</TableRowColumn>
                 <TableRowColumn></TableRowColumn>

@@ -37,7 +37,7 @@ class AddCompanyType extends PureComponent {
 
          <RaisedButton
            label="Add Company Type"
-           primary={true}
+           secondary={true}
            onClick={this.submitCompanyType.bind(this)}
            />
       </div>

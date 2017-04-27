@@ -37,7 +37,7 @@ class AddSectorType extends PureComponent {
 
          <RaisedButton
            label="Add Sector Type"
-           primary={true}
+           secondary={true}
            onClick={this.submitSectorType.bind(this)}
            />
       </div>
