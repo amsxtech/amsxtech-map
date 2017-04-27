@@ -11,6 +11,8 @@ class InfoWindow extends PureComponent {
 
   render() {
     let { clickedMarker } = this.props
+    let companyType = Object.assign({}, clickedMarker.companyType)
+    let sectorType = Object.assign({}, clickedMarker.sectorType)
     const drawerStyle = { boxShadow: 'none', padding: '10px' };
 
     return(
@@ -20,7 +22,7 @@ class InfoWindow extends PureComponent {
           <div>
             <p>
               <h3 className="infowindow">{ clickedMarker.name }</h3>
-              <span className="filter">Companytype</span> in <span className="filter">Industry</span>
+              <span className="filter">{ companyType.name }</span> in <span className="filter">{ sectorType.name }</span>
               <br /><br />
               Address: { clickedMarker.address }<br />
               Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a>
