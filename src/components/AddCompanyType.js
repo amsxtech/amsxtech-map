@@ -28,19 +28,19 @@ class AddCompanyType extends PureComponent {
 
   render(){
     return (
-      <Paper>
-        <h3>CompanyType to be added</h3>
+      <div>
         <TextField
           hintText="Company Type"
+          style={{marginRight: '10px'}}
           onChange={this.handleCompanyTypeChange}
          />
 
-           <RaisedButton
-             label="Add Company Type"
-             primary={true}
-             onClick={this.submitCompanyType.bind(this)}
-             />
-      </Paper>
+         <RaisedButton
+           label="Add Company Type"
+           primary={true}
+           onClick={this.submitCompanyType.bind(this)}
+           />
+      </div>
     )
   }
 }

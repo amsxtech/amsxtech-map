@@ -28,19 +28,19 @@ class AddSectorType extends PureComponent {
 
   render(){
     return (
-      <Paper>
-        <h3>SectorType to be added</h3>
+      <div>
         <TextField
           hintText="Sector Type"
+          style={{marginRight: '10px'}}
           onChange={this.handleSectorTypeChange}
          />
 
-           <RaisedButton
-             label="Add Sector Type"
-             primary={true}
-             onClick={this.submitSectorType.bind(this)}
-             />
-      </Paper>
+         <RaisedButton
+           label="Add Sector Type"
+           primary={true}
+           onClick={this.submitSectorType.bind(this)}
+           />
+      </div>
     )
   }
 }

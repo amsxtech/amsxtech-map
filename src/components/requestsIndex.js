@@ -4,10 +4,13 @@ import { Link } from 'react-router'
 import subscribeToBusinesses from '../actions/business/subscribe'
 import subscribeToUsers from '../actions/users/subscribe'
 import confirmBusiness from '../actions/business/add'
-import RaisedButton from 'material-ui/RaisedButton'
 import AddCompanyType from './AddCompanyType'
 import AddSectorType from './AddSectorType'
 
+import RaisedButton from 'material-ui/RaisedButton'
+import Paper from 'material-ui/Paper';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import './requestsIndex.sass'
 
 class RequestsIndex extends PureComponent {
   componentWillMount(){
@@ -19,26 +22,73 @@ class RequestsIndex extends PureComponent {
   }
   render(){
     const {businesses} = this.props
+    const confirmedBusinesses = businesses.filter((business) => {return business.confirmed})
+    const businessRequests = businesses.filter((business) => {return !business.confirmed})
+
     return (
       <div>
-        <h3>Businesses index</h3>
-        {businesses.map((business, index) => {
-          return <div key={index}>
-            <h3>{business.name}</h3>
-            <p>{business.address}</p>
-            <p>{business.website}</p>
-            <p>Contact: {business.email}</p>
-            <p>Coordinates: {business.latitude}, {business.longitude}</p>
-              <RaisedButton
-              label="Confirm company"
-              primary={true}
-              disabled={business.confirmed}
-              onClick={() => {this.props.confirmBusiness(business, business._id)}}
-              />
-          </div>
-        })}
-        <AddSectorType />
-        <AddCompanyType />
+        <h3>Add Filter Types</h3>
+        <div className="section filter">
+          <AddCompanyType />
+          <AddSectorType />
+        </div>
+
+        <h3>Business Requests</h3>
+        <Table selectable={false}>
+          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Address</TableHeaderColumn>
+              <TableHeaderColumn>Website</TableHeaderColumn>
+              <TableHeaderColumn>Contact</TableHeaderColumn>
+              <TableHeaderColumn>Confirm</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody stripedRows={true} displayRowCheckbox={false}>
+            {businessRequests.map((business, index) => {
+              return <TableRow key={index}>
+                <TableRowColumn>{business.name}</TableRowColumn>
+                <TableRowColumn>{business.address}</TableRowColumn>
+                <TableRowColumn>{business.website}</TableRowColumn>
+                <TableRowColumn>{business.email ? business.email : "-" }</TableRowColumn>
+                <TableRowColumn>
+                  <RaisedButton
+                  label="Confirm company"
+                  primary={true}
+                  disabled={business.confirmed}
+                  onClick={() => {this.props.confirmBusiness(business, business._id)}}
+                  />
+                </TableRowColumn>
+              </TableRow>
+            })}
+          </TableBody>
+        </Table>
+        <br /><br />
+
+        <h3>Published Businesses</h3>
+        <Table selectable={false}>
+          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Address</TableHeaderColumn>
+              <TableHeaderColumn>Website</TableHeaderColumn>
+              <TableHeaderColumn>Contact</TableHeaderColumn>
+              <TableHeaderColumn>Edit/Delete</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody stripedRows={true} displayRowCheckbox={false}>
+            {confirmedBusinesses.map((business, index) => {
+              return <TableRow key={index}>
+                <TableRowColumn>{business.name}</TableRowColumn>
+                <TableRowColumn>{business.address}</TableRowColumn>
+                <TableRowColumn>{business.website}</TableRowColumn>
+                <TableRowColumn>{business.email ? business.email : "-" }</TableRowColumn>
+                <TableRowColumn></TableRowColumn>
+              </TableRow>
+            })}
+          </TableBody>
+        </Table>
+
       </div>
     )
   }
