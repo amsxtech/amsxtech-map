@@ -21,7 +21,6 @@ class RequestsIndex extends PureComponent {
     const {businesses} = this.props
     const confirmedBusinesses = businesses.filter((business) => {return business.confirmed})
     const businessRequests = businesses.filter((business) => {return !business.confirmed})
-
     return (
       <div>
         <NavBarAdmin />
