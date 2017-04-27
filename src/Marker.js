@@ -22,7 +22,7 @@ class Marker extends React.Component {
 
     // if the marker has already been drawn, set map on or null
     if (this.marker) {
-      if (!this.props.mapOn || !this.props.confirmed) {
+      if (!this.props.mapOn) {
         this.marker.setMap(null);
       }
       else {

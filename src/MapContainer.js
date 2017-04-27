@@ -31,7 +31,6 @@ export class MapContainer extends React.Component {
             { this.props.companies.map((company, index) => {
                 return(
                   <Marker key={ index }
-                    confirmed={company.confirmed}
                     mapOn={company.mapOn}
                   company={ company } />
                 )
