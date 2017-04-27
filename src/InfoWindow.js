@@ -12,8 +12,10 @@ class InfoWindow extends PureComponent {
 
   render() {
     let { clickedMarker } = this.props
+    const companyType = Object.assign({}, clickedMarker.companyType)
+    const sectorType = Object.assign({}, clickedMarker.sectorType)
     const drawerStyle = { boxShadow: 'none', padding: '10px' };
-
+    console.log(clickedMarker.facebook)
     return(
       <Drawer open={this.props.showInfoWindow} openSecondary={true} containerStyle={drawerStyle}>
         <button onClick={ this.props.closeInfoWindow }>×</button>
@@ -21,10 +23,16 @@ class InfoWindow extends PureComponent {
           <div>
             <p>
               <h3>{ clickedMarker.name }</h3>
-              <span className="filter">Companytype</span> in <span className="filter">Industry</span>
+              <span className="filter">{ companyType.name }</span> in <span className="filter">{ sectorType.name }</span>
               <br /><br />
+              <p>''{ clickedMarker.tagline }''</p>
               Address: { clickedMarker.address }<br />
-              Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a>
+              Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a><br />
+              <p>{ clickedMarker.logo && <img src={ clickedMarker.logo } style={ {width: "150px"} } /> }</p>
+              { clickedMarker.facebook && <a href={ clickedMarker.facebook } >Facebook </a> }
+              { clickedMarker.twitter && <a href={ clickedMarker.twitter } >Twitter </a> }
+              { clickedMarker.angellist && <a href={ clickedMarker.angellist } >Angel List </a> }
+              { clickedMarker.linkedin && <a href={ clickedMarker.linkedin } >LinkedIn </a> }
             </p>
           </div>
         ) : ( null )
