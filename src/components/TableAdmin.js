@@ -16,7 +16,7 @@ class TableAdmin extends PureComponent {
             <TableHeaderColumn>Address</TableHeaderColumn>
             <TableHeaderColumn>Website</TableHeaderColumn>
             <TableHeaderColumn>Contact</TableHeaderColumn>
-            <TableHeaderColumn>Filters</TableHeaderColumn>
+            <TableHeaderColumn>Company Type, Sector Type</TableHeaderColumn>
             <TableHeaderColumn></TableHeaderColumn>
           </TableRow>
         </TableHeader>
@@ -27,7 +27,7 @@ class TableAdmin extends PureComponent {
               <TableRowColumn style={{whiteSpace: 'normal'}}>{business.address}</TableRowColumn>
               <TableRowColumn>{business.website}</TableRowColumn>
               <TableRowColumn>{business.email ? business.email : "-" }</TableRowColumn>
-              <TableRowColumn></TableRowColumn>
+              <TableRowColumn  style={{whiteSpace: 'normal'}}>{business.companyType.name}, {business.sectorType.name}</TableRowColumn>
               <TableRowColumn>
                 {business.confirmed ? null :
                   (<RaisedButton
