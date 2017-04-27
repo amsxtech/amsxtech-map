@@ -5,14 +5,16 @@ import AppBar from 'material-ui/AppBar'
 import MenuItem from 'material-ui/MenuItem'
 import subscribeToSectorTypes from '../actions/sectorTypes/subscribe'
 import subscribeToCompanyTypes from '../actions/companyTypes/subscribe'
+import updateCompanyTypeFilter from '../actions/filters/companyTypeFilter'
+import updateSectorTypeFilter from '../actions/filters/sectorTypeFilter'
 
 class NavBar extends PureComponent {
   constructor(){
     super()
 
     this.state = {
-      companyType: 1,
-      sectorType: 1
+      companyType: 0,
+      sectorType: 0
     }
   }
   componentDidMount(){
@@ -24,11 +26,13 @@ class NavBar extends PureComponent {
     this.setState({
       companyType: value
     })
+    this.props.updateCompanyTypeFilter(value)
   }
   handleSectorChange(event, index, value){
     this.setState({
       sectorType: value
     })
+    this.props.updateSectorTypeFilter(value)
   }
 
   render(){
@@ -40,6 +44,7 @@ class NavBar extends PureComponent {
             floatingLabelText="Company Type"
             value={this.state.companyType}
           onChange={this.handleCompanyChange.bind(this)}>
+          <MenuItem value={0} primaryText='All'/>
           {companyTypes.map((companyType, index) => {
             return <MenuItem key={index} value={companyType._id} primaryText={companyType.name} />
           })}
@@ -50,6 +55,7 @@ class NavBar extends PureComponent {
             floatingLabelText="Sector"
             value={this.state.sectorType}
           onChange={this.handleSectorChange.bind(this)}>
+          <MenuItem value={0} primaryText='All'/>
           {sectorTypes.map((sectorType, index) => {
             return <MenuItem key={index} value={sectorType._id} primaryText={sectorType.name} />
           })}
@@ -60,6 +66,5 @@ class NavBar extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ companyTypes, sectorTypes }) => ({ companyTypes, sectorTypes })
-
-export default connect(mapStateToProps, {subscribeToSectorTypes, subscribeToCompanyTypes})(NavBar)
+const mapStateToProps = ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter }) => ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter })
+export default connect(mapStateToProps, {subscribeToSectorTypes, subscribeToCompanyTypes, updateCompanyTypeFilter, updateSectorTypeFilter})(NavBar)

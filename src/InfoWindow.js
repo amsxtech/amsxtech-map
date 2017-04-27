@@ -20,13 +20,13 @@ class InfoWindow extends PureComponent {
         <button onClick={ this.props.closeInfoWindow }>×</button>
         {clickedMarker != [] ? (
           <div>
-            <p>
+
               <h3 className="infowindow">{ clickedMarker.name }</h3>
               <span className="filter">{ companyType.name }</span> in <span className="filter">{ sectorType.name }</span>
               <br /><br />
               Address: { clickedMarker.address }<br />
               Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a>
-            </p>
+            
           </div>
         ) : ( null )
         }

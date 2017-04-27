@@ -5,6 +5,8 @@ import companyTypes from './companyTypes'
 import sectorTypes from './sectorTypes'
 import clickedMarker from './clickedMarker'
 import showInfoWindow from './showInfoWindow'
+import companyTypeFilter from './companyTypeFilter'
+import sectorTypeFilter from './sectorTypeFilter'
 
 module.exports = {
   currentUser,
@@ -14,4 +16,6 @@ module.exports = {
   sectorTypes,
   clickedMarker,
   showInfoWindow,
+  companyTypeFilter,
+  sectorTypeFilter,
 }
