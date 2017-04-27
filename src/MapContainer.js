@@ -10,9 +10,15 @@ import subscribeToBusinesses from './actions/business/subscribe'
 import InfoWindow from './InfoWindow'
 
 
-export class MapContainer extends React.Component {
+class MapContainer extends React.Component {
   componentWillMount(){
     this.props.subscribeToBusinesses()
+  }
+
+  renderRequestMarker() {
+    console.log("I'm heeere!")
+    console.log(this.props.requestCompanyPin)
+    return <RequestMarker requestedMarker={this.props.requestCompanyPin} />
   }
 
   render() {
@@ -21,7 +27,8 @@ export class MapContainer extends React.Component {
     if (this.props.showInfoWindow) {
       contentStyle.marginRight = 256;
     }
-    console.log(requestCompanyPin)
+
+
     return (
       <div>
         <div style={contentStyle}>
@@ -35,6 +42,7 @@ export class MapContainer extends React.Component {
                 )
               })
             }
+            <RequestMarker requestedMarker={this.props.requestCompanyPin} />
           </JobsMap>
         </div>
       </div>

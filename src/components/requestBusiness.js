@@ -143,8 +143,8 @@ class RequestBusiness extends PureComponent {
           latitude: response.data.results[0].geometry.location.lat,
           longitude: response.data.results[0].geometry.location.lng,
         })
-        console.log("sending marker coordinates")
-        this.props.requestMarker(response.data.results[0].geometry.location)
+        console.log(typeof(String(response.data.results[0].geometry.location.lat)))
+        this.props.requestMarker({lat: String(response.data.results[0].geometry.location.lat), lng: String(response.data.results[0].geometry.location.lng) })
       })
       .catch((error) => { console.error(error)})
   }

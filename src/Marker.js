@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import showMarker from './actions/showMarker'
+import Pin from './images/black-pin.svg'
 
 class Marker extends React.Component {
   // componentDidUpdate(prevProps) {
@@ -16,8 +17,8 @@ class Marker extends React.Component {
   }
 
   renderMarker() {
-    // console.log('HERE')
     let { map, google, company } = this.props;
+    console.log(company)
     let position = { lat: parseFloat(company.latitude), lng: parseFloat(company.longitude)}
     let title = company.name
 
@@ -34,6 +35,7 @@ class Marker extends React.Component {
 
     // setting the map to null
     const pref = {
+        icon: Pin,
         map: map,
         position: position,
         title: title

@@ -1,21 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import showMarker from './actions/showMarker'
+import Pin from './images/red-pin.svg'
 
-class RequestMarker extends React.Component {
+export default class RequestMarker extends React.Component {
 
-  componentDidmount() {
+  componentDidUpdate(){
     this.renderMarker()
   }
 
   renderMarker() {
-    console.log('REQUEST MARKER')
-    let { map, google, requestMarker } = this.props;
-    console.log(requestMarker)
-    let position = { lat: requestMarker.latitude, lng: requestMarker.longitude }
-    let title = requestMarker.name
+    let { map, google, requestedMarker } = this.props;
+    const position = { lat: parseFloat(requestedMarker.lat), lng: parseFloat(requestedMarker.lng)}
 
-    // if the marker has already been drawn, set map on or null
+    // if the marker has already been drawn, set map on or null, then render marker
     if (this.marker) {
       if (!this.props.mapOn) {
         this.marker.setMap(null);
@@ -23,22 +19,19 @@ class RequestMarker extends React.Component {
       else {
         this.marker.setMap(map)
       }
-      return
     }
 
     // setting the map to null
     const pref = {
         map: map,
         position: position,
-        title: title
+        icon: Pin,
       };
 
     this.marker = new google.maps.Marker(pref)
   }
 
   render() {
-    return null;
+    return null
   }
 }
-
-export default connect(null, { showMarker })(RequestMarker)
