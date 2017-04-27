@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react'
 import { connect } from 'react-redux'
-
 import SelectField from 'material-ui/SelectField'
 import AppBar from 'material-ui/AppBar'
 import MenuItem from 'material-ui/MenuItem'
@@ -38,7 +37,6 @@ class NavBar extends PureComponent {
 
   render(){
     const {companyTypes, sectorTypes } = this.props
-
     return (
       <div>
         <AppBar title="AMSxTech Map" showMenuIconButton={false}>
@@ -67,5 +65,6 @@ class NavBar extends PureComponent {
     )
   }
 }
+
 const mapStateToProps = ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter }) => ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter })
 export default connect(mapStateToProps, {subscribeToSectorTypes, subscribeToCompanyTypes, updateCompanyTypeFilter, updateSectorTypeFilter})(NavBar)

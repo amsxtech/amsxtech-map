@@ -4,8 +4,12 @@ import axios from 'axios'
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import MenuItem from 'material-ui/MenuItem'
+import SelectField from 'material-ui/SelectField'
 import createCompanyRequest from '../actions/business/requestBusiness'
 import subscribeToBusinesses from '../actions/business/subscribe'
+import subscribeToSectorTypes from '../actions/sectorTypes/subscribe'
+import subscribeToCompanyTypes from '../actions/companyTypes/subscribe'
 
 class RequestBusiness extends PureComponent {
   constructor(){
@@ -16,11 +20,16 @@ class RequestBusiness extends PureComponent {
       website: '',
       email: '',
       longitude: '',
-      latitude: ''
+      latitude: '',
+      companyType: 1,
+      sectorType: 1
     }
   }
-  componentWillMount(){
+
+  componentDidMount(){
     this.props.subscribeToBusinesses()
+    this.props.subscribeToCompanyTypes()
+    this.props.subscribeToSectorTypes()
   }
 
   submitCompanyRequest(){
@@ -30,10 +39,13 @@ class RequestBusiness extends PureComponent {
       website: this.state.website,
       email: this.state.email,
       longitude: this.state.longitude,
-      latitude: this.state.latitude
+      latitude: this.state.latitude,
+      companyType: this.state.companyType,
+      sectorType: this.state.sectorType
     }
     this.props.createCompanyRequest(companyRequest)
   }
+
   handleNameChange = (event, name) => {
     this.setState({
       name: name,
@@ -52,19 +64,22 @@ class RequestBusiness extends PureComponent {
       website: website,
     })
   }
+
   handleEmailChange = (event, email) => {
     this.setState({
       email: email,
     })
   }
-  handleLongChange = (event, longitude) => {
+
+  handleCompanyChange = (event, index, value) => {
     this.setState({
-      longitude: longitude,
+      companyType: value,
     })
   }
-  handleLatChange = (event, latitude) => {
+
+  handleSectorChange = (event, index, value) => {
     this.setState({
-      latitude: latitude,
+      sectorType: value
     })
   }
 
@@ -82,7 +97,7 @@ class RequestBusiness extends PureComponent {
   }
 
   render(){
-
+    const { companyTypes,  sectorTypes } = this.props
     return (
       <div>
         <h3>Request to be added</h3>
@@ -94,24 +109,44 @@ class RequestBusiness extends PureComponent {
          hintText="Address"
          onChange={this.handleAddressChange}
          />
-         <TextField
-           hintText="Website"
-           onChange={this.handleWebsiteChange}
-           />
-           <TextField
-             hintText="Contact email"
-             onChange={this.handleEmailChange}
-             />
+       <TextField
+         hintText="Website"
+         onChange={this.handleWebsiteChange}
+         />
+       <TextField
+         hintText="Contact email"
+         onChange={this.handleEmailChange}
+         />
 
-           <RaisedButton
-             label="Submit company request"
-             primary={true}
-             onClick={this.submitCompanyRequest.bind(this)}
-             />
+       <SelectField
+         floatingLabelText="Company Type"
+         value={this.state.companyType}
+         onChange={this.handleCompanyChange.bind(this)}>
+         { companyTypes.map((companyType, index) => {
+             return <MenuItem key={index} value={companyType._id} primaryText={companyType.name} />
+           })
+         }
+       </SelectField>
+
+       <SelectField
+         floatingLabelText="Sector"
+         value={this.state.sectorType}
+       onChange={this.handleSectorChange.bind(this)}>
+         {sectorTypes.map((sectorType, index) => {
+           return <MenuItem key={index} value={sectorType._id} primaryText={sectorType.name} />
+         })}
+       </SelectField>
+
+       <RaisedButton
+         label="Submit company request"
+         primary={true}
+         onClick={this.submitCompanyRequest.bind(this)}
+         />
       </div>
     )
   }
 }
 
+const mapStateToProps = ({ companyTypes, sectorTypes }) => ({ companyTypes, sectorTypes })
 
-export default connect(null, { createCompanyRequest, subscribeToBusinesses })(RequestBusiness)
+export default connect(mapStateToProps, { createCompanyRequest, subscribeToBusinesses, subscribeToSectorTypes, subscribeToCompanyTypes })(RequestBusiness)
