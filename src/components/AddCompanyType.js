@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper';
+import subscribeToUsers from '../actions/users/subscribe'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import createCompanyType from '../actions/companyTypes/add'
@@ -13,6 +14,11 @@ class AddCompanyType extends PureComponent {
 
     }
   }
+
+  componentWillMount() {
+    this.props.subscribeToUsers()
+  }
+
   submitCompanyType(){
     const companyType = {
       companyType: this.state.companyType,
@@ -46,4 +52,4 @@ class AddCompanyType extends PureComponent {
 }
 
 
-export default connect(null, { createCompanyType })(AddCompanyType)
+export default connect(null, { createCompanyType, subscribeToUsers })(AddCompanyType)
