@@ -4,6 +4,8 @@ import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import muiTheme from './assets/styles/theme'
+import './assets/styles/app.sass'
+
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
