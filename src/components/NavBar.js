@@ -26,7 +26,7 @@ class NavBar extends PureComponent {
     })
   }
   handleSectorChange(event, index, value){
-        this.setState({
+    this.setState({
       sectorType: value
     })
   }
