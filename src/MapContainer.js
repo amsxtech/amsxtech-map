@@ -16,8 +16,8 @@ export class MapContainer extends React.Component {
 
   render() {
     const { companies } = this.props
+    console.log(companies)
     const contentStyle = {  transition: 'margin-right 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
-
     if (this.props.showInfoWindow) {
       contentStyle.marginRight = 256;
     }
@@ -29,9 +29,10 @@ export class MapContainer extends React.Component {
           <NavBar />
           <JobsMap google={this.props.google}>
             { this.props.companies.map((company, index) => {
-              console.log(company)
                 return(
                   <Marker key={ index }
+                    confirmed={company.confirmed}
+                    mapOn={company.mapOn}
                   company={ company } />
                 )
               })
@@ -42,10 +43,18 @@ export class MapContainer extends React.Component {
     )}
 }
 
-const mapStateToProps = ({ businesses, showInfoWindow }) => {
-   const companies = businesses.filter((business) => {
-     return business.confirmed
-   })
+const mapStateToProps = ({ businesses, showInfoWindow, companyTypeFilter, sectorTypeFilter }) => {
+  const mapOnCompanies = businesses.map((business) => {
+    if((companyTypeFilter == 0 || companyTypeFilter == business.companyType) && (sectorTypeFilter == 0 || sectorTypeFilter == business.sectorType)){
+      business.mapOn = true
+    } else {
+      business.mapOn = false
+    }
+    return business
+  })
+  const companies = mapOnCompanies.filter((company) => {
+    return company.confirmed
+  })
   return { companies, showInfoWindow }
 }
 

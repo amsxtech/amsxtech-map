@@ -28,9 +28,6 @@ const processRequest = (action, service, method, params, id) => {
       return service.get(id, params)
 
     case CREATE :
-    console.log(action)
-    console.log(service)
-    console.log(params)
       return service.create(params)
 
     case UPDATE :
@@ -88,8 +85,7 @@ export default store => next => action => {
 
   return processRequest(action, apiService, method, params, id)
     .then((result) => {
-      console.log('unauthenticated request')
-      console.log(result)
+      
       next({
         type,
         payload: result.data

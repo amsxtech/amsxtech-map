@@ -3,27 +3,26 @@ import { connect } from 'react-redux'
 import showMarker from './actions/showMarker'
 
 class Marker extends React.Component {
-  // componentDidUpdate(prevProps) {
-    // if ((this.props.map !== prevProps.map) ||
-    // (this.props.properties !== prevProps.properties) ||
-    // (this.props.mapOn !== prevProps.mapOn)) {
-      // this.renderMarker()
-    // }
-  // }
+  componentDidUpdate(prevProps) {
+    if ((this.props.map !== prevProps.map) ||
+    (this.props.properties !== prevProps.properties) ||
+    (this.props.mapOn !== prevProps.mapOn)) {
+      this.renderMarker()
+    }
+  }
 
   componentDidMount() {
     this.renderMarker()
   }
 
   renderMarker() {
-    // console.log('HERE')
     let { map, google, company } = this.props;
     let position = { lat: parseFloat(company.latitude), lng: parseFloat(company.longitude)}
     let title = company.name
 
     // if the marker has already been drawn, set map on or null
     if (this.marker) {
-      if (!this.props.mapOn) {
+      if (!this.props.mapOn || !this.props.confirmed) {
         this.marker.setMap(null);
       }
       else {
