@@ -7,10 +7,7 @@ import confirmBusiness from '../actions/business/add'
 import AddCompanyType from './AddCompanyType'
 import AddSectorType from './AddSectorType'
 import NavBarAdmin from './NavBarAdmin'
-
-import RaisedButton from 'material-ui/RaisedButton'
-import Paper from 'material-ui/Paper';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import TableAdmin from './TableAdmin'
 
 class RequestsIndex extends PureComponent {
   componentWillMount(){
@@ -27,7 +24,8 @@ class RequestsIndex extends PureComponent {
 
     return (
       <div>
-      <NavBarAdmin />
+        <NavBarAdmin />
+
         <h3>Add Filter Types</h3>
         <div className="section filter">
           <AddCompanyType />
@@ -35,61 +33,14 @@ class RequestsIndex extends PureComponent {
         </div>
 
         <h3>Business Requests</h3>
-        <Table selectable={false}>
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
-              <TableHeaderColumn>Name</TableHeaderColumn>
-              <TableHeaderColumn>Address</TableHeaderColumn>
-              <TableHeaderColumn>Website</TableHeaderColumn>
-              <TableHeaderColumn>Contact</TableHeaderColumn>
-              <TableHeaderColumn>Confirm</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody stripedRows={true} displayRowCheckbox={false}>
-            {businessRequests.map((business, index) => {
-              return <TableRow key={index}>
-                <TableRowColumn>{business.name}</TableRowColumn>
-                <TableRowColumn style={{whiteSpace: 'normal'}}>{business.address}</TableRowColumn>
-                <TableRowColumn>{business.website}</TableRowColumn>
-                <TableRowColumn>{business.email ? business.email : "-" }</TableRowColumn>
-                <TableRowColumn>
-                  <RaisedButton
-                  label="Confirm company"
-                  secondary={true}
-                  disabled={business.confirmed}
-                  onClick={() => {this.props.confirmBusiness(business, business._id)}}
-                  />
-                </TableRowColumn>
-              </TableRow>
-            })}
-          </TableBody>
-        </Table>
-        <br /><br />
+        <div className="section">
+          <TableAdmin content={businessRequests} />
+        </div>
 
         <h3>Published Businesses</h3>
-        <Table selectable={false}>
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
-              <TableHeaderColumn>Name</TableHeaderColumn>
-              <TableHeaderColumn>Address</TableHeaderColumn>
-              <TableHeaderColumn>Website</TableHeaderColumn>
-              <TableHeaderColumn>Contact</TableHeaderColumn>
-              <TableHeaderColumn>Edit/Delete</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody stripedRows={true} displayRowCheckbox={false}>
-            {confirmedBusinesses.map((business, index) => {
-              return <TableRow key={index}>
-                <TableRowColumn>{business.name}</TableRowColumn>
-                <TableRowColumn style={{whiteSpace: 'normal'}}>{business.address}</TableRowColumn>
-                <TableRowColumn>{business.website}</TableRowColumn>
-                <TableRowColumn>{business.email ? business.email : "-" }</TableRowColumn>
-                <TableRowColumn></TableRowColumn>
-              </TableRow>
-            })}
-          </TableBody>
-        </Table>
-
+        <div className="section">
+          <TableAdmin content={confirmedBusinesses} />
+        </div>
       </div>
     )
   }
