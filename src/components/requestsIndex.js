@@ -28,6 +28,8 @@ class RequestsIndex extends PureComponent {
             <p>{business.address}</p>
             <p>{business.website}</p>
             <p>Contact: {business.email}</p>
+            <p>Company type: {business.companyType.name}</p>
+            <p>Sector type: {business.sectorType.name}</p>
             <p>Coordinates: {business.latitude}, {business.longitude}</p>
               <RaisedButton
               label="Confirm company"

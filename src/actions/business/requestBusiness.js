@@ -13,7 +13,9 @@ export default (request) => {
       longitude: request.longitude,
       latitude: request.latitude,
       website: request.website,
-      email: request.email
+      email: request.email,
+      companyTypeId: request.companyType,
+      sectorTypeId: request.sectorType,
     },
       //id: userId,
     }
