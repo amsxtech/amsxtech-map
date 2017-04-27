@@ -72,14 +72,12 @@ class RequestBusiness extends PureComponent {
   }
 
   handleCompanyChange = (event, index, value) => {
-    console.log(value)
     this.setState({
       companyType: value,
     })
   }
 
   handleSectorChange = (event, index, value) => {
-    console.log(value)
     this.setState({
       sectorType: value
     })
