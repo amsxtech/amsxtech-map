@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import subscribeToBusinesses from '../actions/business/subscribe'
 import subscribeToUsers from '../actions/users/subscribe'
 import confirmBusiness from '../actions/business/add'
 import RaisedButton from 'material-ui/RaisedButton'
 import AddCompanyType from './AddCompanyType'
 import AddSectorType from './AddSectorType'
-
 
 class RequestsIndex extends PureComponent {
   componentWillMount(){
@@ -30,6 +28,12 @@ class RequestsIndex extends PureComponent {
             <p>Contact: {business.email}</p>
             <p>Company type: {business.companyType.name}</p>
             <p>Sector type: {business.sectorType.name}</p>
+            { business.tagline && <p>Tag line: { business.tagline }</p> }
+            { business.angellist && <p><a href={ business.angellist }>Angel list</a></p> }
+            { business.facebook && <p><a href={ business.facebook }>Facebook</a></p> }
+            { business.twitter && <p><a href={ business.twitter }>Twitter</a></p> }
+            { business.linkedin && <p><a href={ business.linkedin }>LinkedIn</a></p> }
+            { business.logo && <p><img src={ business.logo } style={ {width: "150px"}} /></p>}
             <p>Coordinates: {business.latitude}, {business.longitude}</p>
               <RaisedButton
               label="Confirm company"

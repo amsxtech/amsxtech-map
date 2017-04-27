@@ -5,6 +5,7 @@ import GoogleApiComponent from './GoogleApiComponent'
 import JobsMap from './JobsMap'
 import NavBar from './components/NavBar'
 import Marker from './Marker'
+import RequestMarker from './requestMarker'
 import subscribeToBusinesses from './actions/business/subscribe'
 import InfoWindow from './InfoWindow'
 
@@ -20,12 +21,12 @@ export class MapContainer extends React.Component {
     if (this.props.showInfoWindow) {
       contentStyle.marginRight = 256;
     }
-
+    console.log(requestCompanyPin)
     return (
       <div>
-        <InfoWindow />
         <div style={contentStyle}>
           <NavBar />
+          <InfoWindow />
           <JobsMap google={this.props.google}>
             { this.props.companies.map((company, index) => {
                 return(
@@ -40,11 +41,11 @@ export class MapContainer extends React.Component {
     )}
 }
 
-const mapStateToProps = ({ businesses, showInfoWindow }) => {
+const mapStateToProps = ({ businesses, showInfoWindow, requestCompanyPin }) => {
    const companies = businesses.filter((business) => {
      return business.confirmed
    })
-  return { companies, showInfoWindow }
+  return { companies, showInfoWindow, requestCompanyPin }
 }
 
 let key = config.getGoogleKey()

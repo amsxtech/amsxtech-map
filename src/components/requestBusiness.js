@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem'
@@ -10,6 +9,8 @@ import createCompanyRequest from '../actions/business/requestBusiness'
 import subscribeToBusinesses from '../actions/business/subscribe'
 import subscribeToSectorTypes from '../actions/sectorTypes/subscribe'
 import subscribeToCompanyTypes from '../actions/companyTypes/subscribe'
+import closeRequestWindow from '../actions/requestWindow/close'
+import requestMarker from '../actions/requestMarker'
 
 class RequestBusiness extends PureComponent {
   constructor(){
@@ -19,12 +20,19 @@ class RequestBusiness extends PureComponent {
       address: '',
       website: '',
       email: '',
+      tagline: '',
+      angellist: '',
+      facebook: '',
+      twitter: '',
+      linkedin: '',
+      logo: '',
       longitude: '',
       latitude: '',
       companyType: 1,
       sectorType: 1
     }
   }
+
 
   componentDidMount(){
     this.props.subscribeToBusinesses()
@@ -37,6 +45,12 @@ class RequestBusiness extends PureComponent {
       name: this.state.name,
       address: this.state.address,
       website: this.state.website,
+      tagline: this.state.tagline,
+      angellist: this.state.angellist,
+      facebook: this.state.facebook,
+      twitter: this.state.twitter,
+      linkedin: this.state.linkedin,
+      logo: this.state.logo,
       email: this.state.email,
       longitude: this.state.longitude,
       latitude: this.state.latitude,
@@ -44,6 +58,7 @@ class RequestBusiness extends PureComponent {
       sectorType: this.state.sectorType
     }
     this.props.createCompanyRequest(companyRequest)
+    this.props.closeRequestWindow()
   }
 
   handleNameChange = (event, name) => {
@@ -83,6 +98,42 @@ class RequestBusiness extends PureComponent {
     })
   }
 
+  handleTaglineChange = (event, tagline) => {
+    this.setState({
+      tagline: tagline,
+    })
+  }
+
+  handleAngellistChange = (event, angellist) => {
+    this.setState({
+      angellist: angellist,
+    })
+  }
+
+  handleFacebookChange = (event, facebook) => {
+    this.setState({
+      facebook: facebook,
+    })
+  }
+
+  handleTwitterChange = (event, twitter) => {
+    this.setState({
+      twitter: twitter,
+    })
+  }
+
+  handleLinkedInChange = (event, linkedin) => {
+    this.setState({
+      linkedin: linkedin,
+    })
+  }
+
+  handleLogoChange = (event, logo) => {
+    this.setState({
+      logo: logo,
+    })
+  }
+
   getCoordinates = (address) => {
     const requestAddress = address.split(' ').join('+')
     const request = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestAddress}+Amsterdam&components=country:NL&key=AIzaSyC4tOoGJ5ypR_8KCcnJCSqIOHLIsXAhQ64`
@@ -92,6 +143,8 @@ class RequestBusiness extends PureComponent {
           latitude: response.data.results[0].geometry.location.lat,
           longitude: response.data.results[0].geometry.location.lng,
         })
+        console.log("sending marker coordinates")
+        this.props.requestMarker(response.data.results[0].geometry.location)
       })
       .catch((error) => { console.error(error)})
   }
@@ -99,7 +152,7 @@ class RequestBusiness extends PureComponent {
   render(){
     const { companyTypes,  sectorTypes } = this.props
     return (
-      <div>
+      <div style={{width: "300px", padding: "15px"}}>
         <h3>Request to be added</h3>
         <TextField
           hintText="Business name"
@@ -109,9 +162,9 @@ class RequestBusiness extends PureComponent {
          hintText="Address"
          onChange={this.handleAddressChange}
          />
-       <TextField
-         hintText="Website"
-         onChange={this.handleWebsiteChange}
+         <TextField
+         hintText="Tag line"
+         onChange={this.handleTaglineChange}
          />
        <TextField
          hintText="Contact email"
@@ -137,6 +190,32 @@ class RequestBusiness extends PureComponent {
          })}
        </SelectField>
 
+       <p>Online presence:</p>
+       <TextField
+       hintText="Website"
+       onChange={this.handleWebsiteChange}
+       />
+       <TextField
+         hintText="Angel list"
+         onChange={this.handleAngellistChange}
+         />
+       <TextField
+         hintText="Facebook"
+         onChange={this.handleFacebookChange}
+         />
+       <TextField
+         hintText="Twitter"
+         onChange={this.handleTwitterChange}
+         />
+       <TextField
+         hintText="LinkedIn"
+         onChange={this.handleLinkedInChange}
+         />
+       <TextField
+         hintText="Logo (link)"
+         onChange={this.handleLogoChange}
+         />
+       <br />
        <RaisedButton
          label="Submit company request"
          primary={true}
@@ -149,4 +228,4 @@ class RequestBusiness extends PureComponent {
 
 const mapStateToProps = ({ companyTypes, sectorTypes }) => ({ companyTypes, sectorTypes })
 
-export default connect(mapStateToProps, { createCompanyRequest, subscribeToBusinesses, subscribeToSectorTypes, subscribeToCompanyTypes })(RequestBusiness)
+export default connect(mapStateToProps, { createCompanyRequest, subscribeToBusinesses, subscribeToSectorTypes, subscribeToCompanyTypes, requestMarker, closeRequestWindow })(RequestBusiness)
