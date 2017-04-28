@@ -39,10 +39,11 @@ class NavBar extends PureComponent {
     const {companyTypes, sectorTypes } = this.props
     return (
       <div>
-        <AppBar title="AMSxTech Map" showMenuIconButton={false}>
+        <AppBar title="AMSxTech Map" showMenuIconButton={false} style={{backgroundColor: 'black'}}>
           <SelectField
             floatingLabelText="Company Type"
             value={this.state.companyType}
+            labelStyle={{color: 'white'}}
           onChange={this.handleCompanyChange.bind(this)}>
           <MenuItem value={0} primaryText='All'/>
           {companyTypes.map((companyType, index) => {
@@ -53,6 +54,7 @@ class NavBar extends PureComponent {
           </SelectField>
           <SelectField
             floatingLabelText="Sector"
+            labelStyle={{color: 'white'}}
             value={this.state.sectorType}
           onChange={this.handleSectorChange.bind(this)}>
           <MenuItem value={0} primaryText='All'/>

@@ -21,7 +21,7 @@ class NavBarAdmin extends PureComponent {
 
     return (
       <div>
-        <AppBar title="AMSxTech Map - Admin" showMenuIconButton={false}>
+        <AppBar title="AMSxTech Map - Admin" showMenuIconButton={false} style={{backgroundColor: 'black'}}>
           { signedIn ?
             <li><br /><RaisedButton label="Sign Out" onClick={this.signOut.bind(this)} /></li> :
             null
