@@ -26,7 +26,7 @@ export default () => {
         params: {
           query: {
             $sort: { createdAt: -1},
-            $limit: 25,
+            $limit: 1000,
           },
         },
       }
