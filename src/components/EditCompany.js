@@ -70,6 +70,7 @@ class EditCompany extends PureComponent {
           company.longitude = response.data.results[0].geometry.location.lng,
           console.log(company)
           this.props.updateCompany(company, this.props.content._id)
+          this.handleClose()
 
       })
       .catch((error) => { console.error(error)})
