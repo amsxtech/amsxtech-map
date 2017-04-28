@@ -20,7 +20,6 @@ ReactDOM.render(
         <Route path={BUSINESSES_INDEX_PATH} component={RequestsIndex} />
         <Route path={USER_SIGN_IN_PATH} component={SignIn} />
         <Route path={USER_SIGN_UP_PATH} component={SignUp} />
-        <Route path={ADD_BUSINESS_PATH} component={RequestBusiness} />
       </Route>
     </Router>
   </Provider>,

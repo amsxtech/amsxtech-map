@@ -13,7 +13,7 @@ export default (user) => {
     .then((result) => {
       console.log('user successfully logged in')
       dispatch(signedInUser(result))
-      history.push('/')
+      history.push('/businesses')
     })
     .catch((error) => {
       console.error('oops there has been an error', error)

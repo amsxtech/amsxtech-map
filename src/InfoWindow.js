@@ -45,13 +45,13 @@ class InfoWindow extends PureComponent {
               Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a><br />
               <br />
               <RaisedButton label="Suggest changes" onTouchTap={this.handleOpen} />
-                     <Dialog
-                       title={`Suggest changes to ${clickedMarker.name}`}
-                       modal={false}
-                       open={this.props.showChangeForm}
-                     >
-                       <RequestForm company={clickedMarker} />
-                     </Dialog>
+                 <Dialog
+                   title={`Suggest changes to ${clickedMarker.name}`}
+                   modal={false}
+                   open={this.props.showChangeForm}
+                 >
+                   <RequestForm company={clickedMarker} />
+                 </Dialog>
           </div>
         ) : ( null )
         }
