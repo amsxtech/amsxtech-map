@@ -18,8 +18,8 @@ class NavBar extends PureComponent {
     super(props)
 
     this.state = {
-      companyType: 1,
-      sectorType: 1,
+      companyType: 0,
+      sectorType: 0,
       anchorOrigin: {
         horizontal: 'right',
         vertical: 'bottom',
@@ -124,4 +124,5 @@ class NavBar extends PureComponent {
 }
 
 const mapStateToProps = ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter, showRequestWindow }) => ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter, showRequestWindow })
+
 export default connect(mapStateToProps, {subscribeToSectorTypes, subscribeToCompanyTypes, updateCompanyTypeFilter, updateSectorTypeFilter, openRequestWindow, closeRequestWindow})(NavBar)
