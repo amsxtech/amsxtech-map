@@ -5,13 +5,20 @@ import GoogleApiComponent from './GoogleApiComponent'
 import JobsMap from './JobsMap'
 import NavBar from './components/NavBar'
 import Marker from './Marker'
+import RequestMarker from './requestMarker'
 import subscribeToBusinesses from './actions/business/subscribe'
 import InfoWindow from './InfoWindow'
 
 
-export class MapContainer extends React.Component {
+class MapContainer extends React.Component {
   componentWillMount(){
     this.props.subscribeToBusinesses()
+  }
+
+  renderRequestMarker() {
+    console.log("I'm heeere!")
+    console.log(this.props.requestCompanyPin)
+    return <RequestMarker requestedMarker={this.props.requestCompanyPin} />
   }
 
   render() {
@@ -21,11 +28,12 @@ export class MapContainer extends React.Component {
       contentStyle.marginRight = 256;
     }
 
+
     return (
       <div>
-        <InfoWindow />
         <div style={contentStyle}>
           <NavBar />
+          <InfoWindow />
           <JobsMap google={this.props.google}>
             { this.props.companies.map((company, index) => {
                 return(
@@ -35,13 +43,14 @@ export class MapContainer extends React.Component {
                 )
               })
             }
+            <RequestMarker requestedMarker={this.props.requestCompanyPin} />
           </JobsMap>
         </div>
       </div>
     )}
 }
 
-const mapStateToProps = ({ businesses, showInfoWindow, companyTypeFilter, sectorTypeFilter }) => {
+const mapStateToProps = ({ businesses, showInfoWindow, companyTypeFilter, sectorTypeFilter, requestCompanyPin }) => {
   const mapOnCompanies = businesses.map((business) => {
     if((companyTypeFilter == 0 || companyTypeFilter == business.companyTypeId) && (sectorTypeFilter == 0 || sectorTypeFilter == business.sectorTypeId)){
       business.mapOn = true
@@ -53,7 +62,7 @@ const mapStateToProps = ({ businesses, showInfoWindow, companyTypeFilter, sector
   const companies = mapOnCompanies.filter((company) => {
     return company.confirmed
   })
-  return { companies, showInfoWindow }
+  return { companies, showInfoWindow,requestCompanyPin }
 }
 
 let key = config.getGoogleKey()

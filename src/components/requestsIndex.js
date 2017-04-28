@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import subscribeToBusinesses from '../actions/business/subscribe'
 import subscribeToUsers from '../actions/users/subscribe'
 import confirmBusiness from '../actions/business/add'
