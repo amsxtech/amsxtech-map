@@ -9,6 +9,7 @@ import showRequestWindow from './showRequestWindow'
 import requestCompanyPin from './requestCompanyPin'
 import companyTypeFilter from './companyTypeFilter'
 import sectorTypeFilter from './sectorTypeFilter'
+import showChangeForm from './showChangeRequest'
 
 
 module.exports = {
@@ -23,4 +24,5 @@ module.exports = {
   showRequestWindow,
   companyTypeFilter,
   sectorTypeFilter,
+  showChangeForm,
 }

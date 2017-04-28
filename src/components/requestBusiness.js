@@ -56,10 +56,10 @@ class RequestBusiness extends PureComponent {
   }
 
   handleAddressChange = (event, address) => {
-    this.getCoordinates(address)
     this.setState({
       address: address,
     })
+    this.getCoordinates(address)
   }
 
   handleWebsiteChange = (event, website) => {
@@ -102,8 +102,8 @@ class RequestBusiness extends PureComponent {
           latitude: response.data.results[0].geometry.location.lat,
           longitude: response.data.results[0].geometry.location.lng,
         })
-        console.log(typeof(String(response.data.results[0].geometry.location.lat)))
-        this.props.requestMarker({lat: String(response.data.results[0].geometry.location.lat), lng: String(response.data.results[0].geometry.location.lng) })
+        console.log(response.data.results[0].geometry.location)
+        this.props.requestMarker({lat: response.data.results[0].geometry.location.lat, lng: response.data.results[0].geometry.location.lng})
       })
       .catch((error) => { console.error(error)})
   }
@@ -115,19 +115,23 @@ class RequestBusiness extends PureComponent {
         <h3>Request to be added</h3>
         <TextField
           hintText="Business name"
+          hintStyle={{color:'darkgrey'}}
           onChange={this.handleNameChange}
          />
        <TextField
          hintText="Address"
+         hintStyle={{color:'darkgrey'}}
          onChange={this.handleAddressChange}
          />
        <TextField
          hintText="Contact email"
+         hintStyle={{color:'darkgrey'}}
          onChange={this.handleEmailChange}
          />
 
        <SelectField
          floatingLabelText="Company Type"
+         floatingLabelStyle={{color:'darkgrey'}}
          value={this.state.companyType}
          onChange={this.handleCompanyChange.bind(this)}>
          { companyTypes.map((companyType, index) => {
@@ -138,6 +142,7 @@ class RequestBusiness extends PureComponent {
 
        <SelectField
          floatingLabelText="Sector"
+         floatingLabelStyle={{color:'darkgrey'}}
          value={this.state.sectorType}
        onChange={this.handleSectorChange.bind(this)}>
          {sectorTypes.map((sectorType, index) => {
@@ -146,6 +151,7 @@ class RequestBusiness extends PureComponent {
        </SelectField>
        <TextField
        hintText="Website"
+       hintStyle={{color:'darkgrey'}}
        onChange={this.handleWebsiteChange}
        />
        <br />
