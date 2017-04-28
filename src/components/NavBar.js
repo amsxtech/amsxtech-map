@@ -124,4 +124,4 @@ class NavBar extends PureComponent {
 }
 
 const mapStateToProps = ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter, showRequestWindow }) => ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter, showRequestWindow })
-export default connect(mapStateToProps, {subscribeToSectorTypes, subscribeToCompanyTypes, updateCompanyTypeFilter, updateSectorTypeFilter, showRequestWindow})(NavBar)
+export default connect(mapStateToProps, {subscribeToSectorTypes, subscribeToCompanyTypes, updateCompanyTypeFilter, updateSectorTypeFilter, openRequestWindow, closeRequestWindow})(NavBar)
