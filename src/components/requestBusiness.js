@@ -20,12 +20,6 @@ class RequestBusiness extends PureComponent {
       address: '',
       website: '',
       email: '',
-      tagline: '',
-      angellist: '',
-      facebook: '',
-      twitter: '',
-      linkedin: '',
-      logo: '',
       longitude: '',
       latitude: '',
       companyType: 1,
@@ -45,7 +39,6 @@ class RequestBusiness extends PureComponent {
       name: this.state.name,
       address: this.state.address,
       website: this.state.website,
-      tagline: this.state.tagline,
       email: this.state.email,
       longitude: this.state.longitude,
       latitude: this.state.latitude,
@@ -127,10 +120,6 @@ class RequestBusiness extends PureComponent {
        <TextField
          hintText="Address"
          onChange={this.handleAddressChange}
-         />
-         <TextField
-         hintText="Tag line"
-         onChange={this.handleTaglineChange}
          />
        <TextField
          hintText="Contact email"
