@@ -53,6 +53,7 @@ class NavBar extends PureComponent {
     // This prevents ghost click.
     event.preventDefault()
     this.props.openRequestWindow()
+    console.log(event)
     this.setState({
       anchorEl: event.currentTarget,
     })
@@ -107,8 +108,9 @@ class NavBar extends PureComponent {
             return <MenuItem key={index} value={sectorType._id} primaryText={sectorType.name} />
           })}
           </SelectField>
-          <button onClick={this.handleTouchTap} style={{background: "rgb(211, 47, 47)", border: "0px", color: "white", position: 'relative', margin: "10px"}}>{ this.props.showRequestWindow ? "×" : "+" }</button>
+          <button onClick={this.handleTouchTap} style={{ background: "rgb(211, 47, 47)", border: "0px", color: "white", position: 'relative', margin: "10px"}}>{ this.props.showRequestWindow ? "×" : "+" }</button>
           <Popover
+            style={{marginTop: "10px"}}
             open={this.props.showRequestWindow}
             anchorEl={this.state.anchorEl}
             anchorOrigin={this.state.anchorOrigin}
