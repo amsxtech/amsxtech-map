@@ -7,6 +7,7 @@ import AddCompanyType from './AddCompanyType'
 import AddSectorType from './AddSectorType'
 import NavBarAdmin from './NavBarAdmin'
 import TableAdmin from './TableAdmin'
+import ViewChangeRequests from './viewChangeRequests'
 
 class RequestsIndex extends PureComponent {
   componentWillMount(){
@@ -23,7 +24,8 @@ class RequestsIndex extends PureComponent {
     return (
       <div>
         <NavBarAdmin />
-
+        <ViewChangeRequests />
+        <br />
         <h3>Add Filter Types</h3>
         <div className="section filter">
           <AddCompanyType />

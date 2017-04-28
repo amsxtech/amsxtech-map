@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
-import requestChanges from '../actions/changeRequests/request'
+import requestChanges from '../actions/changeRequests/create'
 import closeChangeRequest from '../actions/changeRequests/close'
 
 class RequestChangeForm extends PureComponent {

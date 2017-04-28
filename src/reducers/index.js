@@ -10,7 +10,7 @@ import requestCompanyPin from './requestCompanyPin'
 import companyTypeFilter from './companyTypeFilter'
 import sectorTypeFilter from './sectorTypeFilter'
 import showChangeForm from './showChangeRequest'
-
+import changeRequests from './changeRequests'
 
 module.exports = {
   currentUser,
@@ -25,4 +25,5 @@ module.exports = {
   companyTypeFilter,
   sectorTypeFilter,
   showChangeForm,
+  changeRequests,
 }
