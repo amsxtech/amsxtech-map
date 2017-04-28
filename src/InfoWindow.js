@@ -21,11 +21,11 @@ class InfoWindow extends PureComponent {
         {clickedMarker != [] ? (
           <div>
               <h3 className="infowindow">{ clickedMarker.name }</h3>
-              <span className="filter">{ companyType.name }</span> in <span className="filter">{ sectorType.name }</span>
-              <br /><br />
-              <p>''{ clickedMarker.tagline }''</p>
-              Address: { clickedMarker.address }<br />
-              Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a><br />
+              <span className="filterTypes">{ companyType.name }</span> in <span className="filterTypes">{ sectorType.name }</span>
+              <p>
+                Address: { clickedMarker.address }<br />
+                Website: <a href={ clickedMarker.website }>{ clickedMarker.website }</a>
+              </p>
           </div>
         ) : ( null )
         }
