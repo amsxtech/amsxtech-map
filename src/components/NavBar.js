@@ -10,7 +10,8 @@ import subscribeToCompanyTypes from '../actions/companyTypes/subscribe'
 import RequestBusiness from './requestBusiness'
 import openRequestWindow from '../actions/requestWindow/open'
 import closeRequestWindow from '../actions/requestWindow/close'
-
+import updateCompanyTypeFilter from '../actions/filters/companyTypeFilter'
+import updateSectorTypeFilter from '../actions/filters/sectorTypeFilter'
 
 class NavBar extends PureComponent {
   constructor(props){
@@ -39,11 +40,13 @@ class NavBar extends PureComponent {
     this.setState({
       companyType: value
     })
+    this.props.updateCompanyTypeFilter(value)
   }
   handleSectorChange(event, index, value){
     this.setState({
       sectorType: value
     })
+    this.props.updateSectorTypeFilter(value)
   }
 
   handleTouchTap = (event) => {
@@ -81,11 +84,13 @@ class NavBar extends PureComponent {
     const {companyTypes, sectorTypes } = this.props
     return (
       <div>
-        <AppBar title="AMSxTech Map" showMenuIconButton={false}>
+        <AppBar title="AMSxTech Map" showMenuIconButton={false} style={{backgroundColor: 'black'}}>
           <SelectField
             floatingLabelText="Company Type"
             value={this.state.companyType}
+            labelStyle={{color: 'white'}}
           onChange={this.handleCompanyChange.bind(this)}>
+          <MenuItem value={0} primaryText='All'/>
           {companyTypes.map((companyType, index) => {
             return <MenuItem key={index} value={companyType._id} primaryText={companyType.name} />
           })}
@@ -94,8 +99,10 @@ class NavBar extends PureComponent {
           </SelectField>
           <SelectField
             floatingLabelText="Sector"
+            labelStyle={{color: 'white'}}
             value={this.state.sectorType}
           onChange={this.handleSectorChange.bind(this)}>
+          <MenuItem value={0} primaryText='All'/>
           {sectorTypes.map((sectorType, index) => {
             return <MenuItem key={index} value={sectorType._id} primaryText={sectorType.name} />
           })}
@@ -116,6 +123,5 @@ class NavBar extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ companyTypes, sectorTypes, showRequestWindow }) => ({ companyTypes, sectorTypes, showRequestWindow })
-
-export default connect(mapStateToProps, {subscribeToSectorTypes, subscribeToCompanyTypes, openRequestWindow, closeRequestWindow })(NavBar)
+const mapStateToProps = ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter, showRequestWindow }) => ({ companyTypes, sectorTypes, companyTypeFilter, sectorTypeFilter, showRequestWindow })
+export default connect(mapStateToProps, {subscribeToSectorTypes, subscribeToCompanyTypes, updateCompanyTypeFilter, updateSectorTypeFilter, showRequestWindow})(NavBar)

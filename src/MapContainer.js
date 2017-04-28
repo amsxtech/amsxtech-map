@@ -38,6 +38,7 @@ class MapContainer extends React.Component {
             { this.props.companies.map((company, index) => {
                 return(
                   <Marker key={ index }
+                    mapOn={company.mapOn}
                   company={ company } />
                 )
               })
@@ -49,11 +50,19 @@ class MapContainer extends React.Component {
     )}
 }
 
-const mapStateToProps = ({ businesses, showInfoWindow, requestCompanyPin }) => {
-   const companies = businesses.filter((business) => {
-     return business.confirmed
-   })
-  return { companies, showInfoWindow, requestCompanyPin }
+const mapStateToProps = ({ businesses, showInfoWindow, companyTypeFilter, sectorTypeFilter, requestCompanyPin }) => {
+  const mapOnCompanies = businesses.map((business) => {
+    if((companyTypeFilter == 0 || companyTypeFilter == business.companyTypeId) && (sectorTypeFilter == 0 || sectorTypeFilter == business.sectorTypeId)){
+      business.mapOn = true
+    } else {
+      business.mapOn = false
+    }
+    return business
+  })
+  const companies = mapOnCompanies.filter((company) => {
+    return company.confirmed
+  })
+  return { companies, showInfoWindow,requestCompanyPin }
 }
 
 let key = config.getGoogleKey()

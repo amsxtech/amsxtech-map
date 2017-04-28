@@ -4,13 +4,13 @@ import showMarker from './actions/showMarker'
 import Pin from './images/black-pin.svg'
 
 class Marker extends React.Component {
-  // componentDidUpdate(prevProps) {
-    // if ((this.props.map !== prevProps.map) ||
-    // (this.props.properties !== prevProps.properties) ||
-    // (this.props.mapOn !== prevProps.mapOn)) {
-      // this.renderMarker()
-    // }
-  // }
+  componentDidUpdate(prevProps) {
+    if ((this.props.map !== prevProps.map) ||
+    (this.props.properties !== prevProps.properties) ||
+    (this.props.mapOn !== prevProps.mapOn)) {
+      this.renderMarker()
+    }
+  }
 
   componentDidMount() {
     this.renderMarker()
