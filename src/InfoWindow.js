@@ -1,9 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import closeInfoWindow from './actions/closeInfoWindow'
-import { Facebook } from './images/facebook.svg'
 import Drawer from 'material-ui/Drawer'
-import './infoWindow.sass'
 
 class InfoWindow extends PureComponent {
   clickCloseBtn() {

@@ -20,12 +20,6 @@ class RequestBusiness extends PureComponent {
       address: '',
       website: '',
       email: '',
-      tagline: '',
-      angellist: '',
-      facebook: '',
-      twitter: '',
-      linkedin: '',
-      logo: '',
       longitude: '',
       latitude: '',
       companyType: 1,
@@ -45,12 +39,6 @@ class RequestBusiness extends PureComponent {
       name: this.state.name,
       address: this.state.address,
       website: this.state.website,
-      tagline: this.state.tagline,
-      angellist: this.state.angellist,
-      facebook: this.state.facebook,
-      twitter: this.state.twitter,
-      linkedin: this.state.linkedin,
-      logo: this.state.logo,
       email: this.state.email,
       longitude: this.state.longitude,
       latitude: this.state.latitude,
@@ -104,35 +92,6 @@ class RequestBusiness extends PureComponent {
     })
   }
 
-  handleAngellistChange = (event, angellist) => {
-    this.setState({
-      angellist: angellist,
-    })
-  }
-
-  handleFacebookChange = (event, facebook) => {
-    this.setState({
-      facebook: facebook,
-    })
-  }
-
-  handleTwitterChange = (event, twitter) => {
-    this.setState({
-      twitter: twitter,
-    })
-  }
-
-  handleLinkedInChange = (event, linkedin) => {
-    this.setState({
-      linkedin: linkedin,
-    })
-  }
-
-  handleLogoChange = (event, logo) => {
-    this.setState({
-      logo: logo,
-    })
-  }
 
   getCoordinates = (address) => {
     const requestAddress = address.split(' ').join('+')
@@ -152,7 +111,7 @@ class RequestBusiness extends PureComponent {
   render(){
     const { companyTypes,  sectorTypes } = this.props
     return (
-      <div style={{width: "300px", padding: "15px"}}>
+      <div style={{width: "300px", padding: "15px" }}>
         <h3>Request to be added</h3>
         <TextField
           hintText="Business name"
@@ -161,10 +120,6 @@ class RequestBusiness extends PureComponent {
        <TextField
          hintText="Address"
          onChange={this.handleAddressChange}
-         />
-         <TextField
-         hintText="Tag line"
-         onChange={this.handleTaglineChange}
          />
        <TextField
          hintText="Contact email"
@@ -189,32 +144,10 @@ class RequestBusiness extends PureComponent {
            return <MenuItem key={index} value={sectorType._id} primaryText={sectorType.name} />
          })}
        </SelectField>
-
-       <p>Online presence:</p>
        <TextField
        hintText="Website"
        onChange={this.handleWebsiteChange}
        />
-       <TextField
-         hintText="Angel list"
-         onChange={this.handleAngellistChange}
-         />
-       <TextField
-         hintText="Facebook"
-         onChange={this.handleFacebookChange}
-         />
-       <TextField
-         hintText="Twitter"
-         onChange={this.handleTwitterChange}
-         />
-       <TextField
-         hintText="LinkedIn"
-         onChange={this.handleLinkedInChange}
-         />
-       <TextField
-         hintText="Logo (link)"
-         onChange={this.handleLogoChange}
-         />
        <br />
        <RaisedButton
          label="Submit company request"
