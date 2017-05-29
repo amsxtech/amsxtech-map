@@ -53,7 +53,6 @@ class NavBar extends PureComponent {
     // This prevents ghost click.
     event.preventDefault()
     this.props.openRequestWindow()
-    console.log(event)
     this.setState({
       anchorEl: event.currentTarget,
     })

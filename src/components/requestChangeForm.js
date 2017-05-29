@@ -19,7 +19,6 @@ class RequestChangeForm extends PureComponent {
       changes: this.state.changes,
       businessId: this.props.company._id
     }
-    console.log(changeRequest)
     this.props.requestChanges(changeRequest)
     this.props.closeChangeRequest()
   }

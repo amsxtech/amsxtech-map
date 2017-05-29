@@ -11,9 +11,11 @@ import companyTypeFilter from './companyTypeFilter'
 import sectorTypeFilter from './sectorTypeFilter'
 import showChangeForm from './showChangeRequest'
 import changeRequests from './changeRequests'
+import loading from './loading'
 
 module.exports = {
   currentUser,
+  loading,
   requests,
   businesses,
   companyTypes,

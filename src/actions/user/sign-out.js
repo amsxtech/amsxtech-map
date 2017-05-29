@@ -8,16 +8,13 @@ const users = api.service('users')
 
 export default (user) => {
   return (dispatch) =>{
-    console.log('logging out user...')
     api.signOut()
     dispatch(signedOutUser())
     history.push('/')
-
   }
 }
 
 const signedOutUser = () => {
-  console.log('dispatching logged out user')
   return {
     type: USER_SIGNED_OUT,
   }

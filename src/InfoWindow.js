@@ -21,7 +21,6 @@ class InfoWindow extends PureComponent {
   }
 
   clickCloseBtn() {
-    console.log('clicked close info window')
   }
 
   render() {
@@ -29,8 +28,7 @@ class InfoWindow extends PureComponent {
     let companyType = Object.assign({}, clickedMarker.companyType)
     let sectorType = Object.assign({}, clickedMarker.sectorType)
     const drawerStyle = { boxShadow: 'none', padding: '10px' };
-    console.log(clickedMarker.facebook)
-    console.log(this.props.showRequestWindow)
+    
 
     return(
       <Drawer open={this.props.showInfoWindow} openSecondary={true} containerStyle={drawerStyle}>

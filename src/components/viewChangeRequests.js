@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+import Paper from 'material-ui/Paper'
 import deleteRequest from '../actions/changeRequests/delete'
 import subscribeToChangeRequests from '../actions/changeRequests/subscribe'
 import RaisedButton from 'material-ui/RaisedButton'

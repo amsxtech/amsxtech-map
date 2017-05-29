@@ -8,7 +8,6 @@ export default (requestId) => {
       method: DESTROY,
       authenticate: true,
       id: requestId,
-      params:{},
     }
   }
 }

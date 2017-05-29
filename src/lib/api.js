@@ -5,7 +5,8 @@ class API {
   constructor() {
     // Establish a Socket.io connection
     // const socket = io('http://battleshipsapi.codaisseur.cloud/')
-    const socket = io('http://localhost:3030')
+    //const socket = io('https://amsxtech-api.herokuapp.com/')
+    const socket = io('//localhost:3030')
     // Initialize our Feathers client application through Socket.io
     // with hooks and authentication.
     this.app = feathers()
@@ -26,8 +27,7 @@ class API {
     if (!user) return this.app.authenticate()
 
     const { email, password } = user
-    console.log(email)
-    console.log(password)
+    
     return this.app.authenticate(
       Object.assign({}, { type: 'local' }, {
       email,

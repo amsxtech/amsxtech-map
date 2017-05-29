@@ -16,8 +16,6 @@ class MapContainer extends React.Component {
   }
 
   renderRequestMarker() {
-    console.log("I'm heeere!")
-    console.log(this.props.requestCompanyPin)
     return <RequestMarker requestedMarker={this.props.requestCompanyPin} />
   }
 
