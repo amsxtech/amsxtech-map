@@ -1,15 +1,7 @@
-# React Starter
+# AMSxTech map
 
-## Installation
+This project is to create a map of tech companies in Amsterdam for AMSxTech. Companies can request for themselves to be added or suggest changes to existing companies.
 
-```bash
-npm install
-npm start
-open http://localhost:3000
-```
+This front end is built with React/Redux and the Google Maps API. The back end (separate repo) is built using FeathersJS/Node.
 
-
-------------------
-
-Simplified version of [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate) for the
-traineeship program.
+[View the tech map in action](http://amsxtechmap.bitballoon.com/) (updated release coming soon).
