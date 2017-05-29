@@ -7,11 +7,8 @@ const users = api.service('users')
 
 export default (user) => {
   return (dispatch) =>{
-    console.log('logging in user...')
-    console.log(user)
     api.authenticate(user)
     .then((result) => {
-      console.log('user successfully logged in')
       dispatch(signedInUser(result))
       history.push('/businesses')
     })
@@ -22,8 +19,6 @@ export default (user) => {
 }
 
 const signedInUser = (result) => {
-  console.log('dispatching signed in user')
-  console.log(result.data)
   return {
     type: USER_SIGNED_IN,
     payload: result.data

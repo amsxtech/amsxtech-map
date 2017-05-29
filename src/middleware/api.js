@@ -28,7 +28,6 @@ const processRequest = (action, service, method, params, id) => {
       return service.get(id, params)
 
     case CREATE :
-    console.log(params)
       return service.create(params)
 
     case UPDATE :
@@ -77,7 +76,6 @@ export default store => next => action => {
         if(error.code === 401){
         history.replace(USER_SIGN_IN_PATH)
         }
-        console.log('line 80 error')
         return next({
           type: API_ERROR,
           payload: error
@@ -101,7 +99,6 @@ export default store => next => action => {
 
       // give up
       console.error(error)
-      console.log('line 103 error')
       return next({
         type: API_ERROR,
         payload: error

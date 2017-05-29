@@ -12,18 +12,11 @@ class AddSectorType extends PureComponent {
     super()
     this.state = {
       sectorType: '',
-
     }
   }
-
-  componentWillMount() {
-    //this.props.subscribeToUsers()
-  }
-
   submitSectorType(){
     const sectorType = {
       sectorType: this.state.sectorType,
-
     }
     this.props.createSectorType(sectorType)
   }
@@ -34,7 +27,6 @@ class AddSectorType extends PureComponent {
   }
 
   render(){
-    console.log(this.props)
     const sectorTypes = this.props.content
     return (
       <div>

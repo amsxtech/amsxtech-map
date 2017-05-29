@@ -26,9 +26,6 @@ class TableAdmin extends PureComponent {
       sectorType: 1,
     }
   }
-  componentDidMount(){
-
-  }
   handleOpen(){
     this.setState({
       open: true

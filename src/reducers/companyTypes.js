@@ -12,7 +12,6 @@ export default (state = [], { type, payload } = {}) => {
 
     case COMPANY_TYPE_CREATED :
       const newCompanyType = Object.assign({}, payload)
-      console.log('company type created')
       return state.concat([newCompanyType])
 
     case COMPANY_TYPE_UPDATED :
