@@ -35,6 +35,7 @@ export default () => {
 }
 
 const createdCompanyType = (companyType) => {
+  console.log('in action')
   return {
     type: COMPANY_TYPE_CREATED,
     payload: companyType

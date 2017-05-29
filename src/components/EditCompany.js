@@ -23,8 +23,6 @@ class EditCompany extends PureComponent {
     }
   }
   componentDidMount(){
-    console.log(this.props.content.companyType.name)
-    console.log(this.props.content.sectorType.name)
     this.setState({
       companyTypeId: this.props.content.companyType._id,
       sectorTypeId: this.props.content.sectorType._id,
@@ -55,7 +53,6 @@ class EditCompany extends PureComponent {
   }
 
   updateCompany(){
-    console.log(this.props.content._id)
     const company = {
       name: this.refs.name.getValue(),
       address: this.refs.address.getValue(),
@@ -68,7 +65,6 @@ class EditCompany extends PureComponent {
       .then((response) => {
           company.latitude = response.data.results[0].geometry.location.lat,
           company.longitude = response.data.results[0].geometry.location.lng,
-          console.log(company)
           this.props.updateCompany(company, this.props.content._id)
           this.handleClose()
 
@@ -77,7 +73,6 @@ class EditCompany extends PureComponent {
 
   }
   render(){
-    console.log(this.props.content.companyType._id)
     return (
       <div>
         <RaisedButton label="Edit" onTouchTap={this.handleOpen.bind(this)} />

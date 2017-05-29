@@ -28,6 +28,7 @@ const processRequest = (action, service, method, params, id) => {
       return service.get(id, params)
 
     case CREATE :
+    console.log(params)
       return service.create(params)
 
     case UPDATE :
@@ -52,7 +53,6 @@ export default store => next => action => {
 
   const defaults = { method: FIND, params: {}, type: ERROR_UNKNOWN_ACTION_TYPE }
   const { service, method, params, id, type, authenticate } = Object.assign({}, defaults, action[CALL_API])
-
   const api = new API()
   const apiService = api.service(service)
 
@@ -61,7 +61,8 @@ export default store => next => action => {
   if (authenticate) {
     return api.authenticate()
       .then(() => processRequest(action, apiService, method, params, id)
-        .then((result) => {
+        .then((result) =>
+        {
           next({
             type,
             payload: result.data
@@ -75,7 +76,8 @@ export default store => next => action => {
         console.error(error)
         if(error.code === 401){
         history.replace(USER_SIGN_IN_PATH)
-}
+        }
+        console.log('line 80 error')
         return next({
           type: API_ERROR,
           payload: error
@@ -85,7 +87,6 @@ export default store => next => action => {
 
   return processRequest(action, apiService, method, params, id)
     .then((result) => {
-
       next({
         type,
         payload: result.data
@@ -100,6 +101,7 @@ export default store => next => action => {
 
       // give up
       console.error(error)
+      console.log('line 103 error')
       return next({
         type: API_ERROR,
         payload: error

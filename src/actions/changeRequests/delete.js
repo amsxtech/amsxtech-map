@@ -1,5 +1,5 @@
 import { CALL_API, DESTROY } from '../../middleware/api'
-
+import { CHANGE_REQUEST_REMOVED } from './subscribe'
 export default (requestId) => {
 
   return {
@@ -8,7 +8,6 @@ export default (requestId) => {
       method: DESTROY,
       authenticate: true,
       id: requestId,
-      params:{},
     }
   }
 }

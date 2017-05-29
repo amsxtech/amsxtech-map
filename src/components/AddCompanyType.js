@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper';
-import subscribeToUsers from '../actions/users/subscribe'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import createCompanyType from '../actions/companyTypes/add'
+import { List, ListItem } from 'material-ui/List'
 
 class AddCompanyType extends PureComponent {
   constructor(){
@@ -15,9 +15,7 @@ class AddCompanyType extends PureComponent {
     }
   }
 
-  componentWillMount() {
-    this.props.subscribeToUsers()
-  }
+
 
   submitCompanyType(){
     const companyType = {
@@ -33,6 +31,7 @@ class AddCompanyType extends PureComponent {
   }
 
   render(){
+    const companyTypes = this.props.content
     return (
       <div>
         <TextField
@@ -46,10 +45,15 @@ class AddCompanyType extends PureComponent {
            secondary={true}
            onClick={this.submitCompanyType.bind(this)}
            />
-      </div>
+         <List>
+         {companyTypes.map((companyType, index) => {
+           return <ListItem key={index}>{companyType.name}</ListItem>
+         })}
+         </List>
+       </div>
     )
   }
 }
 
 
-export default connect(null, { createCompanyType, subscribeToUsers })(AddCompanyType)
+export default connect(null, { createCompanyType })(AddCompanyType)

@@ -35,6 +35,8 @@ class RequestBusiness extends PureComponent {
   }
 
   submitCompanyRequest(){
+    this.getCoordinates(this.state.address)
+
     const companyRequest = {
       name: this.state.name,
       address: this.state.address,
@@ -59,7 +61,6 @@ class RequestBusiness extends PureComponent {
     this.setState({
       address: address,
     })
-    this.getCoordinates(address)
   }
 
   handleWebsiteChange = (event, website) => {
@@ -102,7 +103,6 @@ class RequestBusiness extends PureComponent {
           latitude: response.data.results[0].geometry.location.lat,
           longitude: response.data.results[0].geometry.location.lng,
         })
-        console.log(response.data.results[0].geometry.location)
         this.props.requestMarker({lat: response.data.results[0].geometry.location.lat, lng: response.data.results[0].geometry.location.lng})
       })
       .catch((error) => { console.error(error)})

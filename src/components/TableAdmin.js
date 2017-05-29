@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 import confirmBusiness from '../actions/business/add'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton'
+import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import MenuItem from 'material-ui/MenuItem'
 import EditCompany from './EditCompany'
 
 import SelectField from 'material-ui/SelectField'
-import subscribeToCompanyTypes from '../actions/companyTypes/subscribe'
-import subscribeToSectorTypes from '../actions/sectorTypes/subscribe'
 
 import Dialog from 'material-ui/Dialog'
 
@@ -28,8 +27,7 @@ class TableAdmin extends PureComponent {
     }
   }
   componentDidMount(){
-    this.props.subscribeToCompanyTypes()
-    this.props.subscribeToSectorTypes()
+
   }
   handleOpen(){
     this.setState({
@@ -79,8 +77,10 @@ class TableAdmin extends PureComponent {
   }
   render(){
     const businesses = this.props.content
-    const {companyTypes, sectorTypes} = this.props
+    const companyTypes = this.props.companyTypes
+    const sectorTypes = this.props.sectorTypes
     return (
+      <div>
       <Table selectable={false}>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
@@ -119,10 +119,10 @@ class TableAdmin extends PureComponent {
           })}
         </TableBody>
       </Table>
+    </div>
     )
   }
 }
 
-const mapStateToProps = ({ companyTypes, sectorTypes }) => ({ companyTypes, sectorTypes })
 
-export default connect(mapStateToProps, { confirmBusiness, subscribeToSectorTypes, subscribeToCompanyTypes })(TableAdmin)
+export default connect(null, { confirmBusiness })(TableAdmin)

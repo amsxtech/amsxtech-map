@@ -23,7 +23,7 @@ export default (state = [], { type, payload } = {}) => {
       })
 
     case CHANGE_REQUEST_REMOVED :
-      return state.filter((changeRequest) => (changeRequest._id !== payload._id))
+      return state.filter((changeRequest) => (console.log(changeRequest) && changeRequest._id !== payload._id))
 
     default :
       return state

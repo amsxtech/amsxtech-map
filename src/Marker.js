@@ -18,7 +18,6 @@ class Marker extends React.Component {
 
   renderMarker() {
     let { map, google, company } = this.props;
-    console.log(company)
     let position = { lat: parseFloat(company.latitude), lng: parseFloat(company.longitude)}
     let title = company.name
 
@@ -48,9 +47,7 @@ class Marker extends React.Component {
   }
 
   onMarkerClick(){
-    console.log('Clicked marker')
-    // console.log(this.props)
-    // console.log(this.marker)
+    
     this.props.showMarker(this.props.company)
   }
 
